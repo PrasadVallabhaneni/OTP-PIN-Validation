@@ -1,3 +1,6 @@
+Live Link:   https://otp-pin-validation.herokuapp.com/
+                   Valid OTP Codes: 5764, 1964, 1576
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
