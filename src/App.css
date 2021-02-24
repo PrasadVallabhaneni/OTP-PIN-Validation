@@ -1,0 +1,11 @@
+.form-group{
+    display: inline-flex ;
+    
+}
+.form-group > input{
+    width: 40px;
+    margin-right: 15px;
+}
+.container{
+    margin-top: 10%;
+}
