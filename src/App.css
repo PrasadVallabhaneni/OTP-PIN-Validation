@@ -9,3 +9,7 @@
 .container{
     margin-top: 10%;
 }
+
+.btn-link{
+    float: right;
+}

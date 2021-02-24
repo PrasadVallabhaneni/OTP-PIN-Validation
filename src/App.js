@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import './App.css'
 function App() {
   const [pin,setPin]=useState([0,0,0,0]);
-
+  const [codeCount,setCount]=useState(3);
    const inpref1=useRef();
    const inpref2=useRef();
    const inpref3 = useRef();
@@ -36,25 +36,38 @@ function App() {
 
    const onSubmit=(evn)=>{
       evn.preventDefault();
-     let res=[]
+     let res=[];
+     let status=true;
         arr.forEach((ele)=>{
             if(isNaN(ele.current.value)){
               ele.current.style.border='2px solid red';
+              status=false;
               return ele.current.focus()
             }else{
               ele.current.style='';
               res.push(ele.current.value)
             }
         });
-      console.log(res);  
-   }
+        if(status){
+        fetch(`http://localhost:3001/${res.join("")}`, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }).then((result)=>{
+           if(result.status===200){
+             alert('Your OTP verified successfully')
+           }else{
+              alert("You have entered wrong otp. Please try again...");
+           }
+        })
+        }
 
+      
+   }
+  
    
-   useEffect(()=>{
-     
-     console.log(pin)
-   
-   },[pin])
+
   return (
     <Container className="container">
       <Row>
@@ -97,14 +110,19 @@ function App() {
                   ref={inpref4}
                   required
                   onKeyUp={onChange}
-                />  
+                />
               </div>
             </fieldset>
-               <button
+            <button type="button" class="btn btn-link" onClick={()=>setCount(codeCount-1)} disabled={codeCount===0?true:false}>
+              Resend OTP({codeCount})
+            </button>
+            <button
               type="submit"
               value="Login"
               class="btn btn-warning btn-block"
-            >Submit</button>
+            >
+              Submit
+            </button>
           </form>
         </Col>
         <Col md={4}></Col>
