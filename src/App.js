@@ -49,18 +49,18 @@ function App() {
             }
         });
         if(status){
-        fetch(`http://localhost:3001/${res.join("")}`, {
+        fetch(`https://otp-pin.herokuapp.com/${res.join("")}`, {
           method: "POST",
           headers: {
             "Content-type": "application/json",
           },
-        }).then((result)=>{
-           if(result.status===200){
-             alert('Your OTP verified successfully')
-           }else{
-              alert("You have entered wrong otp. Please try again...");
-           }
-        })
+        }).then((result) => {
+          if (result.status === 200) {
+            alert("Your OTP verified successfully");
+          } else {
+            alert("You have entered wrong otp. Please try again...");
+          }
+        });
         }
 
       
